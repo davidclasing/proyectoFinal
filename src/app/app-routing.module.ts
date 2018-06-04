@@ -1,10 +1,14 @@
+import { AnadirTransportistaComponent } from './anadir-transportista/anadir-transportista.component';
+import { SeguimientoComponent } from './seguimiento/seguimiento.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 const routes:Routes = [
-  {path:'login',component:LoginComponent},
-  {path:'home',component:HomeComponent}
+  {path:'',component:LoginComponent},
+  {path:'home',component:HomeComponent},
+  {path:'seguimiento',component:SeguimientoComponent},
+  {path:'anadirTransportista',component:AnadirTransportistaComponent}
 ];
 @NgModule({
   exports: [ RouterModule ],

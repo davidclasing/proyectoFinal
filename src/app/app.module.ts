@@ -8,12 +8,18 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { LoginService } from './login.service';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SeguimientoComponent } from './seguimiento/seguimiento.component';
+import { AnadirTransportistaComponent } from './anadir-transportista/anadir-transportista.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent,
+    SeguimientoComponent,
+    AnadirTransportistaComponent
   ],
   imports: [
     BrowserModule,

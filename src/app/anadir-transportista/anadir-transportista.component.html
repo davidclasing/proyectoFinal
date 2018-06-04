@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2>Registro de nuevo transportista</h2>
+  <form #form="ngForm" (ngSubmit)="anadirTransportista(form)">
+      <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="matricula">Matricula</label>
+            <input type="text" class="form-control" id="matricula" placeholder="Matricula" [(ngModel)]="form.matricula" name="matricula">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="nombre">Nombre</label>
+            <input type="passnombreword" class="form-control" id="nombre" placeholder="nombre" [(ngModel)]="form.nombre" name="nombre">
+          </div>
+        </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="apellido1">Primer apellido</label>
+        <input type="text" class="form-control" id="apellido1" placeholder="Primer apellido" [(ngModel)]="form.apellido1" name="apellido1">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="apellido2">Segundo apellido</label>
+        <input type="text" class="form-control" id="apellido2" placeholder="Segundo apellido" [(ngModel)]="form.apellido2" name="apellido2">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="fechaNac">Fecha de nacimiento</label>
+        <input type="date" class="form-control" id="fechaNac" placeholder="Fecha de nacimiento" [(ngModel)]="form.fechaNac" name="fechaNac">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Direccion">Direccion</label>
+      <input type="text" class="form-control" id="Direccion" placeholder="Direccion" [(ngModel)]="form.direccion" name="direccion">
+    </div>
+    <div class="form-group">
+      <label for="Ciudad">Ciudad</label>
+      <input type="text" class="form-control" id="Ciudad" placeholder="Ciudad" [(ngModel)]="form.ciudad" name="ciudad">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="Provincia">Provincia</label>
+        <input type="text" class="form-control" id="Provincia" [(ngModel)]="form.provincia" name="provincia">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="País">País</label>
+        <select id="País" class="form-control" [(ngModel)]="form.pais" name="pais">
+          <option value="España" selected>España<option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">email
+        <label for="CP">CP</label>
+        <input type="text" class="form-control" id="CP" [(ngModel)]="form.cp" name="cp">
+      </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="Email">Email</label>
+          <input type="text" class="form-control" id="Email" placeholder="Email" [(ngModel)]="form.email" name="email">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="Telefono">Telefono de contacto</label>
+          <input type="text" class="form-control" id="Telefono" placeholder="Telefono de contacto" [(ngModel)]="form.telefono" name="telefono">
+        </div>
+      </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+</div>
