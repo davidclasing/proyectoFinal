@@ -1,13 +1,15 @@
 .warning{
-    color: #155724;
-    background-color: #eb1515;
-    border-color: #c3e6cb;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
     position: fixed;
     padding: .75rem 1.25rem;
     margin-bottom: 1rem;
     border: 1px solid transparent;
     border-radius: .25rem;
-    display:block;
+    display:none;
+    width: 70%;
+    margin-left:15%;
 }
 .success{
     color: #155724;
@@ -18,7 +20,10 @@
     margin-bottom: 1rem;
     border: 1px solid transparent;
     border-radius: .25rem;
-    display:block;
+    display:none;
     width: 70%;
     margin-left:15%;
+}
+body{
+    overflow-x: hidden !important;
 }

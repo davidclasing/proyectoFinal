@@ -1,5 +1,6 @@
 import { LoginComponent } from './login/login.component';
 import { Component } from '@angular/core';
+import { NgClass } from '@angular/common';
 declare var jquery:any;
 declare var $ :any;
 
@@ -10,23 +11,21 @@ declare var $ :any;
 })
 export class AppComponent {
   appRoot = LoginComponent;
-  warningAlert:boolean = false;
-  alertType = {
-    warning: this.warningAlert,
-    success: !this.warningAlert
-  }
+  warningAlert:boolean = true;
+  
   txtAlert = "";
   mostrarAlerta(texto, tipo){
-    $("#alert").fadeIn();
+    $("#alert").fadeIn(1000);
     this.txtAlert = texto;
+    debugger;
     if(tipo == "success"){
-      this.warningAlert = false;
-    }
-    else{
       this.warningAlert = true;
     }
-    setTimeout(()=>{
-      
+    else{
+      this.warningAlert = false;
     }
+    setTimeout(()=>{
+      $("#alert").fadeOut(1000);
+    },4000)
   }
 }

@@ -1,0 +1,111 @@
+<div id="gestionPedidos" class="inline columnas col-md-6">
+    <h2>Busqueda de pedidos</h2>
+    <hr>
+
+    
+        <div id="filtros" class="row">
+          <div class="row" class="form-group">
+              <label class="container">Filtro por matricula
+                  <input type="checkbox" [(ngModel)]="filtroTexto">
+                  <span class="checkmark"></span>
+                </label>
+          <input type="text" [(ngModel)]="filtroBusqueda" class="form-control" [(ngModel)]="campoTexto">
+          </div>
+        </div>
+    
+    
+    <div class="row">
+        <label class="container">Filtro de fecha
+            <input type="checkbox" [(ngModel)]="filtroFecha">
+            <span class="checkmark"></span>
+          </label>
+        <div class="form-group row">
+          <div class="col-md-6">
+              <label for="fechaInicio">Fecha de inicio</label>
+              <input type="date" placeholder="Fecha inicio" class="form-control" [(ngModel)]="fechaInicio">
+          </div>
+          <div class="col-md-6">
+              <label for="fechaInicio">Fecha de fin</label>
+              <input type="date" placeholder="Fecha fin" class="form-control" [(ngModel)]="fechaFin">
+            </div>
+           
+            
+        </div>
+        
+    </div>
+    <div class="row">
+        <button class="btn btn-primary" (click)="obtenerPedidos()">Aplicar filtros</button>
+      </div>
+    
+    
+    <div id="busquedaResultadosPedidos">
+        <div id="busquedaResultadosTransportistas" class="row">
+            <table class="table table-striped" *ngIf="pedidosList.length >= 1">
+              <tr>
+                <th>Matricula</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Fecha del pedido</th>
+              </tr>
+              <tr *ngFor="let pedido of pedidosList" (click)="detalles(pedido)" >
+                <td>{{pedido.matricula_trans}}</td>
+                <td>{{pedido.origen}}</td>
+                <td>{{pedido.destino}}</td>
+                <td>{{pedido.fecha}}</td>
+              </tr>
+            </table>
+            <table class="table table-striped" *ngIf="pedidosList.length < 1">
+                <tr>
+                  <th>Matricula</th>
+                  <th>Nombre</th>
+                  <th>Numero de telefono </th>
+                </tr>
+                <tr>
+                  <td colspan="3">No hay datos disponibles</td>
+                  
+                </tr>
+              </table>
+          </div>
+    </div>
+  </div>
+  <div id="detallesPedido" class="inline col-md-6">
+      <div id="detallesTransportista" class="inline" [@showInfo]="show">
+          <div class="card border-info mb-3" >
+              <div class="card-header">Info del transportista
+                <span (click)="cerrarPopup()"style="float:right;margin-right:2%;cursor:pointer">X</span>
+              </div>
+              <div class="card-body text-info">
+                <div class="row">
+                  <div class="col-md-6">{{detallesInfo.matricula_trans | uppercase}}</div>
+                  <div class="col-md-6">{{detallesInfo.fecha}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">{{detallesInfo.origen}}</div>
+                    <div class="col-md-6">{{detallesInfo.destino }}</div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">{{detallesInfo.empresa_destino}}</div>
+                     
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">{{detallesInfo.descripcion}}</div>
+                      
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">{{detallesInfo.pais}}</div>
+                      <div class="col-md-6">{{detallesInfo.provincia}}</div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">{{detallesInfo.ciudad}}</div>
+                      <div class="col-md-6">{{detallesInfo.telefono}}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6"><button (click)="verRuta(detallesInfo.origen,detallesInfo.destino)">Ver ruta del pedido</button></div>
+                    <div class="col-md-6">{{detallesInfo.telefono}}</div>
+                </div>
+              </div>
+            </div>
+           
+      </div>
+  </div>
+  

@@ -1,8 +1,5 @@
 <router-outlet></router-outlet>
 
-<div [ngClass]="alertType" role="alert" id="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+<div [ngClass]="warningAlert ? 'success' : 'warning'" role="alert" id="alert">
+        {{txtAlert}}
 </div>

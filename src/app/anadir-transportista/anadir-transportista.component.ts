@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { LoginService } from './../login.service';
 import { AppComponent } from './../app.component';
 import { TransportistasService } from './../transportistas.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,10 +11,14 @@ import { NgForm } from "@angular/forms";
 })
 export class AnadirTransportistaComponent implements OnInit {
 
-  constructor(private transportistaService:TransportistasService,private app:AppComponent) { }
+  constructor(private transportistaService:TransportistasService,private app:AppComponent,private loginXHR:LoginService,private router:Router) { }
   form;
   ngOnInit() {
-    console.log(this.form);
+    this.loginXHR.comprobarLogin().then((data)=>{
+      if(data['ret'] != "ok"){
+        this.router.navigateByUrl("/");
+      }
+    })
   }
 
   anadirTransportista(data){
@@ -20,10 +26,10 @@ export class AnadirTransportistaComponent implements OnInit {
     this.transportistaService.agregarTransportista(data.value).then((data)=>{
       if(data['ret'] == "ok"){
         debugger;
-        this.app.mostrarAlerta("Todo ok","error");
+        this.app.mostrarAlerta("Se ha insertado correctamente el transportista","success");
       }
       else{
-
+        this.app.mostrarAlerta(data['error'],"error");
       }
     })
   }

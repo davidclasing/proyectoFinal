@@ -19,4 +19,19 @@ export class LoginService {
    })
   })
   }
+  comprobarLogin(){
+    let user = localStorage.getItem("user");
+    let pass = localStorage.getItem("pass");
+    let data = {
+      action:2
+    }
+    return new Promise((resolve,reject)=>{
+      this.http.post("http://localhost/php/hola.php",data).subscribe((data)=>{
+        resolve(data);
+     })
+    })
+  }
+  logOut(){
+    localStorage.removeItem("token");
+  }
 }
