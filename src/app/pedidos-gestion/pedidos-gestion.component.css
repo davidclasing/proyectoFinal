@@ -83,3 +83,42 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+  .table-container {
+    height: 30em;
+}
+table {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    width: 100%;
+}
+table thead {
+    /* head takes the height it requires, 
+    and it's not scaled when table is resized */
+    flex: 0 0 auto;
+    width: calc(100% - 0.9em);
+}
+table tbody {
+    /* body takes all the remaining available space */
+    flex: 1 1 auto;
+    display: block;
+    overflow-y: auto;
+}
+table tbody tr {
+    width: 100%;
+}
+table thead, table tbody tr {
+    display: table;
+    table-layout: fixed;
+}
+tbody::-webkit-scrollbar {
+  width: 0.5em;
+}
+tbody::-webkit-scrollbar-thumb {
+  background-color: #5f97ecdb;
+  outline: 3px solid #5f97ecdb;
+  
+}
+tbody::-webkit-scrollbar-track {
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+}

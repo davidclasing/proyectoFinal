@@ -3,11 +3,11 @@
     
     <div class="navbar justify-content-md-center justify-content-sm-center justify-content-lg-center" id="navbarsExample10" >
       <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" (click)="transportistas = true">Transportistas</a>
+        <li class="hvr-underline-reveal">
+          <a class="nav-link"  [ngClass]="status ? 'active' : 'notactive'" (click)="transportistas = true;status = true;status1 = false">Transportistas</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="transportistas = false">Pedidos</a>
+        <li class="hvr-underline-reveal">
+          <a class="nav-link"  [ngClass]="status1 ? 'active' : 'notactive'" (click)="transportistas = false;status = false;status1 = true">Pedidos</a>
         </li>
       </ul>
     </div>
@@ -26,12 +26,14 @@
               <button class="btn btn-warning">Limpiar filtros</button>
           </div>
           <div id="busquedaResultadosTransportistas">
-            <table class="table table-striped" *ngIf="transportistasList.length >= 1">
+            <table class="table table-striped table-container" *ngIf="transportistasList.length >= 1">
+              <thead>
               <tr>
                 <th>Matricula</th>
                 <th>Nombre</th>
                 <th>Numero de telefono </th>
               </tr>
+            </thead>
               <tr *ngFor="let transportistas of transportistasList" (click)="detalles(transportistas)" >
                 <td>{{transportistas.matricula}}</td>
                 <td>{{transportistas.nombre}}</td>
