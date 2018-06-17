@@ -22,9 +22,11 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "agm-direction": "^0.5.4",
+    "angularfire2": "^5.0.0-rc.10",
     "auth0-js": "^9.6.0",
     "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
+    "firebase": "^5.0.4",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },

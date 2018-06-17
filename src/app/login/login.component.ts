@@ -1,4 +1,4 @@
-import { HomeComponent } from './../home/home.component';
+
 
 import { LoginService } from './../login.service';
 import { Component, OnInit, NgModule } from '@angular/core';
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.loginXHR.logIn(this.user,this.pass).then((data)=>{
       if(data['ret'] == "ok"){
         localStorage.setItem("token",data['token']);
-        this.router.navigateByUrl("/home");
+        this.router.navigateByUrl("/seguimiento");
       }
   });
 }

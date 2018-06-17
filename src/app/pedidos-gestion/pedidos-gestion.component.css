@@ -3,12 +3,17 @@
     cursor: pointer;
 }
 
-#busquedaResultadosTransportistas > table > tbody > tr:nth-child(1){
+#busquedaResultadosTransportistas > table > thead > tr:nth-child(1){
     background-color: antiquewhite !important;
     cursor: auto !important;
 }
+#busquedaResultadosTransportistas > table > thead > tr:nth-child(1):hover{
+  background-color: antiquewhite !important;
+  
+}
 #busquedaResultadosTransportistas > table > tbody > tr{
     cursor: pointer !important;
+    
 }
 #busquedaResultadosTransportistas > table > tbody > tr:hover{
     background-color: rgba(243, 130, 130, 0.637) !important;
@@ -16,6 +21,12 @@
 }
 #gestionTransportistas{
   margin-top: 5%;
+}
+.card{
+  margin-top:5%;
+}
+thead{
+  width: 100% !important;
 }
 
 /* Customize the label (the container) */
@@ -84,7 +95,7 @@
     transform: rotate(45deg);
   }
   .table-container {
-    height: 30em;
+    height: 25em;
 }
 table {
     display: flex;

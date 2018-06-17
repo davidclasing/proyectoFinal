@@ -4,7 +4,7 @@
     <div class="navbar justify-content-md-center justify-content-sm-center justify-content-lg-center" id="navbarsExample10" >
       <ul class="navbar-nav">
         <li class="hvr-underline-reveal">
-          <a class="nav-link"  [ngClass]="status ? 'active' : 'notactive'" (click)="transportistas = true;status = true;status1 = false">Transportistas</a>
+          <a class="nav-link"  [ngClass]="status ? 'active' : 'notactive'" (click)="transportistas = true;status = true;status1 = false;obtenerTransportistas('');">Transportistas</a>
         </li>
         <li class="hvr-underline-reveal">
           <a class="nav-link"  [ngClass]="status1 ? 'active' : 'notactive'" (click)="transportistas = false;status = false;status1 = true">Pedidos</a>

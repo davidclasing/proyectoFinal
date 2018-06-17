@@ -21,13 +21,16 @@
 #gestionTransportistas{
     margin-top: 5%;
 }
+.card{
+  margin-top:5%;
+}
 /* Customize the label (the container) */
 .container {
     display: block;
     position: relative;
     padding-left: 35px;
     margin-bottom: 12px;
-    cursor: pointer;
+    
     
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -105,7 +108,7 @@ table tbody {
     /* body takes all the remaining available space */
     flex: 1 1 auto;
     display: block;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 table tbody tr {
     width: 100%;

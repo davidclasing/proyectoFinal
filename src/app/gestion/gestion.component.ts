@@ -29,7 +29,9 @@ export class GestionComponent implements OnInit {
   transportistasList = [];
   detallesInfo = [];
   show:string = "hidden";
-  constructor(private transportistasXHR:TransportistasService) { }
+  constructor(private transportistasXHR:TransportistasService) { 
+    
+   }
 
   ngOnInit() {
     this.obtenerTransportistas("");
@@ -38,9 +40,12 @@ export class GestionComponent implements OnInit {
     this.transportistasList = [];
     let texto = this.filtroBusquedaTransportista;
     this.transportistasXHR.obtenerTransportistas(filtro).then((data)=>{
-      let numTransportistas = Object.keys(data['transportistas']).length;
-      for(var a = 0;a<numTransportistas;a++){
-        this.transportistasList.push(data['transportistas'][a]);
+      debugger;
+      if(data['ret'] == "ok"){
+        let numTransportistas = Object.keys(data['transportistas']).length;
+        for(var a = 0;a<numTransportistas;a++){
+          this.transportistasList.push(data['transportistas'][a]);
+        }
       }
     })
   }

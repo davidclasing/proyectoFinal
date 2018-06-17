@@ -29,11 +29,14 @@ export class PedidosGestionComponent implements OnInit {
   filtroFecha:any = false;
   filtroTexto:any = false;
   campoTexto;
-  fechaInicio:string;
-  fechaFin:string;
+  fechaInicio:string = undefined;
+  fechaFin:string = undefined;
   detallesInfo = [];
   show:string = "hidden";
-  constructor(private transportistasXHR:TransportistasService,private router:Router,private geoLoc:GeolocalizacionService) { }
+  constructor(private transportistasXHR:TransportistasService,private router:Router,private geoLoc:GeolocalizacionService) {
+    this.fechaInicio = undefined;
+    this.fechaFin = undefined;
+   }
 
   ngOnInit() {
     this.obtenerPedidos();
@@ -80,10 +83,13 @@ export class PedidosGestionComponent implements OnInit {
     }
     this.transportistasXHR.obtenerPedidos(data).then((data)=>{
       this.pedidosList = [];
-      let numTransportistas = Object.keys(data['pedidos']).length;
-      for(var a = 0;a<numTransportistas;a++){
-        this.pedidosList.push(data['pedidos'][a]);
+      if(data['ret'] == "ok"){
+        let numTransportistas = Object.keys(data['pedidos']).length;
+        for(var a = 0;a<numTransportistas;a++){
+          this.pedidosList.push(data['pedidos'][a]);
+        }
       }
+     
     })
   }
   detalles(pedido){
@@ -123,7 +129,8 @@ export class PedidosGestionComponent implements OnInit {
                       {origenLat:origenCoordLat,
                       origenLng:origenCoordLng,
                     destinationLat:destinoCoordLat,
-                    destinationLng:destinoCoordLng}
+                    destinationLng:destinoCoordLng,
+                        seguimiento:false}
                     
                   });
       })

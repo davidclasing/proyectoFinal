@@ -14,7 +14,7 @@ export class LoginService {
       pass:pass
     }
    return new Promise((resolve,reject)=>{
-    this.http.post("http://localhost/php/hola.php",data).subscribe((data)=>{
+    this.http.post("http://appmovil.letslearn.es/hola.php",data).subscribe((data)=>{
       resolve(data);
    })
   })
@@ -26,7 +26,7 @@ export class LoginService {
       action:2
     }
     return new Promise((resolve,reject)=>{
-      this.http.post("http://localhost/php/hola.php",data).subscribe((data)=>{
+      this.http.post("http://appmovil.letslearn.es/hola.php",data).subscribe((data)=>{
         resolve(data);
      })
     })

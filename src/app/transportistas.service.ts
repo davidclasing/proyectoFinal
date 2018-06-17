@@ -13,7 +13,7 @@ export class TransportistasService {
       action:3
     }
     return new Promise((resolve,reject)=>{
-      this.http.post("http://localhost/php/hola.php",data).subscribe((data)=>{resolve(data)})
+      this.http.post("http://appmovil.letslearn.es/hola.php",data).subscribe((data)=>{resolve(data)})
     })
   }
   obtenerTransportistas(filtro){
@@ -22,7 +22,7 @@ export class TransportistasService {
       action:4
     }
     return new Promise((resolve,reject)=>{
-      this.http.post("http://localhost/php/hola.php",data).subscribe((data)=>{resolve(data)})
+      this.http.post("http://appmovil.letslearn.es/hola.php",data).subscribe((data)=>{resolve(data)})
     });
   }
   obtenerPedidos(filtros){
@@ -34,7 +34,7 @@ export class TransportistasService {
       }
     
     return new Promise((resolve,reject)=>{
-      this.http.post("http://localhost/php/hola.php",data).subscribe((data)=>{resolve(data)})
+      this.http.post("http://appmovil.letslearn.es/hola.php",data).subscribe((data)=>{resolve(data)})
     });
   }
 }

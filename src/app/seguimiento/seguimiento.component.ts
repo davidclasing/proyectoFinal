@@ -1,8 +1,11 @@
+import { Observable } from 'rxjs';
+import { TransportistasService } from './../transportistas.service';
 import { GeolocalizacionService } from './../geolocalizacion.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debug } from 'util';
 import { AgmMap } from '@agm/core';
+import { AngularFirestore } from 'angularfire2/firestore';
 @Component({
   selector: 'app-seguimiento',
   templateUrl: './seguimiento.component.html',
@@ -19,20 +22,27 @@ export class SeguimientoComponent implements OnInit {
   destino;
   sub;
   dir = undefined;
-  constructor(private route:ActivatedRoute,private router:Router) { 
+  transportistasList = [];
+  filtroBusquedaTransportista:string;
+  rastreador;
+  seguimiento:boolean = true;
+  constructor(private route:ActivatedRoute,private router:Router,private transportistasXHR:TransportistasService,private db:AngularFirestore) { 
     this.sub = this.route
       .queryParams
       .subscribe(params => {
         // Defaults to 0 if no query param provided.
         debugger;
         this.getDirection(params);
-        
+        debugger;
+        if(params['seguimiento'] == "false"){
+          this.seguimiento = false;
+        }
         
       });
   }
   
   ngOnInit() {
-    
+    this.obtenerTransportistas("");
     
       
   }
@@ -48,5 +58,26 @@ export class SeguimientoComponent implements OnInit {
     }
     console.log(this.dir);
   }
-  
+  obtenerTransportistas(filtro){
+    this.transportistasList = [];
+    let texto = this.filtroBusquedaTransportista;
+    this.transportistasXHR.obtenerTransportistas(filtro).then((data)=>{
+      debugger;
+      if(data['ret'] == "ok"){
+        let numTransportistas = Object.keys(data['transportistas']).length;
+        for(var a = 0;a<numTransportistas;a++){
+          this.transportistasList.push(data['transportistas'][a]);
+        }
+      }
+    })
+  }
+  rastrear(matricula){
+    this.rastreador = this.db.collection("localizacion").doc(matricula).valueChanges().subscribe((doc)=>{
+      console.log(doc);
+      this.lat = doc['lat'];
+      this.lng = doc['lng'];
+      
+    });
+
+  }
 }

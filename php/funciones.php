@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 function comprobarMatricula($matricula){
     $conexion = mysqli_connect("localhost", "transportes", "transportes", "empresaTransporte");
-$sql = "SELECT MATRICULA FROM transportistas WHERE MATRICULA = ?";
+$sql = "SELECT matricula FROM transportistas WHERE matricula = ?";
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param("s",$matricula);
 $stmt->execute();
@@ -21,7 +21,7 @@ $stmt->store_result();
 }
 function comprobarLogin($user,$pass){
     $conexion = mysqli_connect("localhost", "transportes", "transportes", "empresaTransporte");
-    $sql = "SELECT * FROM USERS WHERE nickName = ? && password = ?";
+    $sql = "SELECT * FROM users WHERE nickName = ? && password = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("ss",$user,$pass);
         $stmt->execute();
@@ -39,6 +39,7 @@ function comprobarLogin($user,$pass){
 function obtenerToken($headers){
     $token = "null";
     if(isset($headers['Authorization'])){
+        
         $matches = array();
         preg_match('/Token (.*)/', $headers['Authorization'], $matches);
         if(isset($matches[1])){
@@ -49,16 +50,17 @@ function obtenerToken($headers){
       return $token;
 }
 function insertarTransportista($datos){
-    $password = $datos->matricula."%".$datos->nombre;
+    
+    $password = $datos->matricula."X".$datos->nombre;
+    $apellido2 = isset($datos->apellido2) ? $datos->apellido2 : "";
     $conexion = mysqli_connect("localhost", "transportes", "transportes", "empresaTransporte");
-$sql = "INSERT INTO transportistas (matricula,password, nombre, apellido1,apellido2, fechaNac, direccion, ciudad, provincia, pais, email, telefono, CP) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+$sql = "INSERT INTO transportistas (matricula, password, nombre, apellido1,apellido2, fechaNac, direccion, ciudad, provincia, pais, email, telefono, CP) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 $stmt = $conexion->prepare($sql);
 mandarEmail($datos->email,$datos->matricula,$password);
-$stmt->bind_param("sssssssssssii",$datos->matricula,$password,$datos->nombre,$datos->apellido1,$datos->apellido2,$datos->fechaNac,$datos->direccion,$datos->ciudad,$datos->provincia,$datos->pais,$datos->email,$datos->telefono,$datos->cp);
+$stmt->bind_param("sssssssssssii",$datos->matricula,$password,$datos->nombre,$datos->apellido1,$apellido2,$datos->fechaNac,$datos->direccion,$datos->ciudad,$datos->provincia,$datos->pais,$datos->email,$datos->telefono,$datos->cp);
         if($stmt->execute()){
             mysqli_close($conexion);
             return true;
-            
         }
         else{
             mysqli_close($conexion);
@@ -87,7 +89,7 @@ $mail = new PHPMailer();
           $mail->isHTML(false);
                                       // Set email format to HTML
           $mail->Subject = 'Trans Cargo Registro';
-          $mail->Body = "Bienvenido a Trans Cargo, aqui tiene sus datos de usuario \n\r<br> <p>User: $matricula </p> \n\r <p>Password: $password </p></body></html>";
+          $mail->Body = "Bienvenido a Trans Cargo, aqui tiene sus datos de usuario \n\rUser: $matricula  \n\r Password: $password";
           $mail->Send();
 }
 ?>
